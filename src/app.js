@@ -24,6 +24,8 @@ app.post("/search", function(req, res){
 	var search = req.body.search;
 	//logs what is searched in the terminal, not the JavaScript console
 	console.log("You searched for: " + search);
+	console.log(req.body)
+	
 	
 	
 	
@@ -46,8 +48,12 @@ app.post("/search", function(req, res){
 		  // Digging through the body object through some console-logging will produce data based on these keys... to the terminal
 		  console.log("Gamertag: " + body.Results[0].Id)
 		  console.log("Total Kills: " + body.Results[0].Result.WarzoneStat.TotalKills);
+		
+		  
+			
 		});
 		// What I want to be able to do is take the variable body and make it available to the rest of my app, this is where I am stuck
+	
 })
 
 

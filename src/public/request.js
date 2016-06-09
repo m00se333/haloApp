@@ -10,8 +10,7 @@ $searchButton.on("click", function(event){
 	
 	//jQuery POST request: url, data, dunno what the function is for
 	$.post("http://localhost:1117/search", {search: $search}, function(data){
-		if (data === "DONE"){
+		
 			console.log("POST worked")
-		}
 	});
 });
