@@ -1,0 +1,58 @@
+
+html{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+  
+
+* {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+} *:before, *:after{
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+  }
+
+body{
+	background: #ABABAB;
+}
+
+#top{
+	margin: 5% auto;
+	display: block;
+	width: 50%;
+	} h1 {
+	text-align: center;
+	} #searchForm{
+	margin: 0 auto;
+    display: block;
+    width: 30%;
+    padding-left: 5%;
+	}
+
+#imageContainer{
+	margin: 0 auto;
+	width: 40%;
+	border: 1px solid white;
+	background-repeat: no-repeat;
+	background-position: center;
+	display: none; 
+}#spartan{
+	margin: 0 auto;
+	display: block;
+	position: relative;
+	padding: 12% 0 0 0;
+}
+
+#dataContainer{
+	margin: 3% auto;
+	display: block;
+	width: 40%;
+	}h2,p{
+	margin: 0 auto;
+	display: block;
+	text-align: center;
+}

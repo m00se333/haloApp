@@ -13,12 +13,16 @@ $searchButton.on("click", function(event){
 		console.log(data)
 		var gamerTag = data.Results[0].Id;
 		var totalKills = data.Results[0].Result.WarzoneStat.TotalKills;
+		var totalDeaths = data.Results[0].Result.WarzoneStat.TotalDeaths;
+		var totalGames = data.Results[0].Result.WarzoneStat.TotalGamesCompleted;
 
 		console.log(gamerTag);
 		console.log(totalKills);
 
-		$("#postContainer h2").html("Gamertag: " + gamerTag);
-		$("#postContainer p").html("Total Warzone Kills: " + totalKills);
+		$("#dataContainer h2").html("Gamertag: " + gamerTag);
+		$("#dataContainer p").html("Total Warzone Kills: " + totalKills
+		 + "<br>" + "Total Warzone Deaths: " + totalDeaths
+		 + "<br>" + "Total Wazone Matches Complete: " + totalGames);
 		
 		/*var playerData = {
 			tag: gamerTag,
@@ -32,7 +36,8 @@ $searchButton.on("click", function(event){
 
 	$.post("http://localhost:1117/emblemSearch", {search: $search}, function(data){
 		//console.log(data.request.uri.href)
-		$("#emblem").attr("src", data.request.uri.href)
+		$("#imageContainer").css("background-image", "url("+data.request.uri.href+")");
+		$("#imageContainer").css("display", "block");
 		
 	});
 
