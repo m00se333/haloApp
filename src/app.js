@@ -8,14 +8,14 @@ var bodyParser = require("body-parser")
 // I think this is necessary to parse the JSON data I'm recieving
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
+//using Jade because I don't know how else to do this
 
 //express app serves static files located in the public directory
 app.use(express.static(__dirname + '/public'));
 
 //At the home route (localhost:1117/) send the static file index.html
 app.get("/", function(req, res){
-	res.sendFile("index.html");
+	res.send("index.html");
 });
 
 //Event Listener when there is a POST request made from public/request.js
@@ -24,8 +24,8 @@ app.post("/search", function(req, res){
 	var search = req.body.search;
 	//logs what is searched in the terminal, not the JavaScript console
 	console.log("You searched for: " + search);
-	//what does this do?
-	res.end("yes");
+	
+	
 	
 	//these are the settings/options for the GET request I am going to make when the POST comes in from index.html
 	var options = { method: 'GET',
@@ -42,11 +42,11 @@ app.post("/search", function(req, res){
 		request(options, function (error, response, body) {
 		  if (error) throw new Error(error);
 		  // This is necessary because the body is a string, and JSON.parse turns said string into an object
-		  var body = JSON.parse(body)
+		  var body = JSON.parse(response.body)
 		  // Digging through the body object through some console-logging will produce data based on these keys... to the terminal
 		  console.log("Gamertag: " + body.Results[0].Id)
 		  console.log("Total Kills: " + body.Results[0].Result.WarzoneStat.TotalKills);
-			});
+		});
 		// What I want to be able to do is take the variable body and make it available to the rest of my app, this is where I am stuck
 })
 
