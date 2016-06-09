@@ -2,15 +2,35 @@
 <html>
 <head>
 	<title></title>
+	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 <h1>Just Trying to Make a Halo App</h1>
-<form>
+<form id="searchForm">
 	<input id="searchField" type="text"></input>
 	<input id="searchButton" type="submit" value="search"></input>
 </form>
 
-<div id="postContainer"></div>
+<img id="emblem">
+<img id="spartan">
+
+<div id="postContainer">
+	<h2></h2>
+	<p></p>
+</div>
+
+
+
+
+
+<!--<script id="entry-template" type="text/x-handlebars-template">
+	<div id="postContainer">
+	<h2>{{tag}}</h2>
+	<p>{{kills}}</p>
+	</div>
+</script>-->
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="request.js"></script>
 </body>

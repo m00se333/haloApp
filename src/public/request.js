@@ -9,8 +9,37 @@ $searchButton.on("click", function(event){
 	event.preventDefault();
 	
 	//jQuery POST request: url, data, dunno what the function is for
-	$.post("http://localhost:1117/search", {search: $search}, function(data){
+	$.post("http://localhost:1117/statSearch", {search: $search}, function(data){
+		console.log(data)
+		var gamerTag = data.Results[0].Id;
+		var totalKills = data.Results[0].Result.WarzoneStat.TotalKills;
+
+		console.log(gamerTag);
+		console.log(totalKills);
+
+		$("#postContainer h2").html("Gamertag: " + gamerTag);
+		$("#postContainer p").html("Total Warzone Kills: " + totalKills);
 		
-			console.log("POST worked")
+		/*var playerData = {
+			tag: gamerTag,
+			kills: totalKills
+		}
+		var source = $("#entry-template").html();
+		var template = Handlebars.compile(source);
+		var context = playerData;
+		var html = template(context)*/ //GG Handlebars
 	});
+
+	$.post("http://localhost:1117/emblemSearch", {search: $search}, function(data){
+		//console.log(data.request.uri.href)
+		$("#emblem").attr("src", data.request.uri.href)
+		
+	});
+
+	$.post("http://localhost:1117/spartanSearch", {search: $search}, function(data){
+		//console.log(data.request.uri.href)
+		$("#spartan").attr("src", data.request.uri.href)
+		
+	});
+
 });
