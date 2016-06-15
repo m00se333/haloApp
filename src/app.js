@@ -59,13 +59,7 @@ app.post("/statSearch", function(req, res){
 //emblem
 app.post("/emblemSearch", function(req, res){
 var search = req.body.search
-var imgOptions = { method: 'GET',
-			  url: 'https://www.haloapi.com/profile/h5/profiles/'+search+'/emblem',
-			  qs: { size: '512' },
-			  headers: 
-			   { 'postman-token': '0a12548b-de6d-1f82-ea81-7678d3a489c9',
-			     'cache-control': 'no-cache',
-			     'ocp-apim-subscription-key': 'a9433cb3d47b4f7d9dca856b2c3f1809' } };
+var imgOptions = new Options('https://www.haloapi.com/profile/h5/profiles/'+search+'/emblem', '512');
 
 		request(imgOptions, function (error, response, body) {
 		  if (error) throw new Error(error);
@@ -77,13 +71,7 @@ var imgOptions = { method: 'GET',
 //spartan image 
 app.post("/spartanSearch", function(req, res){
 var search = req.body.search
-var spartanOptions = { method: 'GET',
-  url: 'https://www.haloapi.com/profile/h5/profiles/'+search+'/spartan',
-  qs: { size: '256' },
-  headers: 
-   { 'postman-token': '63e6c80b-a37c-2097-d8b7-6fbf86cf5216',
-     'cache-control': 'no-cache',
-     'ocp-apim-subscription-key': 'a9433cb3d47b4f7d9dca856b2c3f1809' } };
+var spartanOptions = new Options('https://www.haloapi.com/profile/h5/profiles/'+search+'/spartan', '256');
 
 request(spartanOptions, function (error, response, body) {
   if (error) throw new Error(error);
@@ -97,6 +85,18 @@ app.listen(1117, function(){
 	console.log("Frontend server running on 1117.")
 });
 
+
+
+
+function Options(url, size){
+  this.url = url,
+  this.method= "GET",
+  this.qs= { size: size},
+  this.headers=
+  {'postman-token': '63e6c80b-a37c-2097-d8b7-6fbf86cf5216',
+     'cache-control': 'no-cache',
+     'ocp-apim-subscription-key': 'a9433cb3d47b4f7d9dca856b2c3f1809' }
+  };
 
 
 
