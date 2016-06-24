@@ -10,14 +10,16 @@ $searchButton.on("click", function(event){
 	
 	//jQuery POST request: url, data, dunno what the function is for
 	$.post("http://localhost:1117/statSearch", {search: $search}, function(data){
-		console.log(data)
+		//console.log(data)
+		//returns formatted data object courtesy of app.js
 		var gamerTag = data.gamertag;
 		var totalKills = data.totalKills
 		var totalDeaths = data.totalDeaths;
 		var totalGames = data.totalGames;
 
-		console.log(gamerTag);
-		console.log(totalKills);
+		//log data probably a test
+		//console.log(gamerTag);
+		//console.log(totalKills);
 
 		$("#dataContainer h2").html("Gamertag: " + gamerTag);
 		$("#dataContainer p").html("Total Warzone Kills: " + totalKills

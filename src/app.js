@@ -60,7 +60,7 @@ app.post("/statSearch", function(req, res){
 				totalGames: body.Results[0].Result.WarzoneStat.TotalGamesCompleted
 		  };
 		res.send(playerData)
-		console.log(playerData);
+		//console.log(playerData);
 	// creates a child named "user" in my database
 	var userRef = ref.child("user");
 	// populates the child with the playerData object successfully.
@@ -78,12 +78,12 @@ var imgOptions = new Options('https://www.haloapi.com/profile/h5/profiles/'+sear
 		  if (error) throw new Error(error);
 		  var imgString = response.request.uri.href;
 		  res.send(imgString);
-		  console.log(imgString);
+		  //console.log(imgString);
 
 		  // create child of "/user"
 		  var emblemRef = ref.child("user/emblem");
 		  		// pass an object to that path in the database
-		  		emblemRef.set({image:imgString});
+		  		emblemRef.set({img:imgString});
 		});
 });
 
@@ -99,7 +99,7 @@ request(spartanOptions, function (error, response, body) {
 	res.send(imgString);
 
 	var spartanImage = ref.child("user/spartanImage");
-		  spartanImage.set({image:imgString});
+		  spartanImage.set({img:imgString});
 	});
 });
 
