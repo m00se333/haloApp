@@ -11,10 +11,10 @@ $searchButton.on("click", function(event){
 	//jQuery POST request: url, data, dunno what the function is for
 	$.post("http://localhost:1117/statSearch", {search: $search}, function(data){
 		console.log(data)
-		var gamerTag = data.Results[0].Id;
-		var totalKills = data.Results[0].Result.WarzoneStat.TotalKills;
-		var totalDeaths = data.Results[0].Result.WarzoneStat.TotalDeaths;
-		var totalGames = data.Results[0].Result.WarzoneStat.TotalGamesCompleted;
+		var gamerTag = data.gamertag;
+		var totalKills = data.totalKills
+		var totalDeaths = data.totalDeaths;
+		var totalGames = data.totalGames;
 
 		console.log(gamerTag);
 		console.log(totalKills);
@@ -23,28 +23,14 @@ $searchButton.on("click", function(event){
 		$("#dataContainer p").html("Total Warzone Kills: " + totalKills
 		 + "<br>" + "Total Warzone Deaths: " + totalDeaths
 		 + "<br>" + "Total Wazone Matches Complete: " + totalGames);
-		
-		/*var playerData = {
-			tag: gamerTag,
-			kills: totalKills
-		}
-		var source = $("#entry-template").html();
-		var template = Handlebars.compile(source);
-		var context = playerData;
-		var html = template(context)*/ //GG Handlebars
 	});
 
 	$.post("http://localhost:1117/emblemSearch", {search: $search}, function(data){
-		//console.log(data.request.uri.href)
-		$("#imageContainer").css("background-image", "url("+data.request.uri.href+")");
+		$("#imageContainer").css("background-image", "url("+data+")");
 		$("#imageContainer").css("display", "block");
-		
 	});
 
 	$.post("http://localhost:1117/spartanSearch", {search: $search}, function(data){
-		//console.log(data.request.uri.href)
-		$("#spartan").attr("src", data.request.uri.href)
-		
+		$("#spartan").attr("src", data)
 	});
-
 });
