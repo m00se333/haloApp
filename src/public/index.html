@@ -7,28 +7,38 @@
 </head>
 <body>
 <div id="top">
-	<h1>Just Trying to Make a Halo App</h1>
+	<h1>Enter Your Gamertag to Retreive Your Halo Data</h1>
 	<form id="searchForm">
-		<input id="searchField" type="text"></input>
+		<input id="searchField" type="text" value="Lore Eye An Us"></input>
 		<input id="searchButton" type="submit" value="search"></input>
 	</form>
 </div>
+<button id="deleteButton"></button>
 
-<div id="test"></div>
-<div id="imageContainer">
-	<img id="emblem">
-	<img id="spartan">
+	<script id="list-template" type="text/x-handlebars-template">
+    <h2>{{gamertag}}</h2>
+    <h3>{{totalKills}}</h3>
+    <button id="confirm">save profile?</button>
+  </script>
+
+
+<div id="profileSearch">
+	
 </div>
+<form id="updateSaved">
+		<input id="updateValue" type="text" value="BajaTacos"></input>
+		<input id="updateValueButton" type="submit" value="Update"></input>
+</form>
+<a href="/compare">"click me"</a>
 
-<div id="dataContainer">
-	<h2></h2>
-	<p></p>
-</div>
 
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="request.js"></script>
-<script type="text/javascript" src="firebaseData.js"></script>
+<script type="text/javascript" src="searchAndPopulate.js"></script>
 </body>
 </html>

@@ -1,11 +1,12 @@
 //define search button for later use
 var $searchButton = $("#searchButton");
+var $search = $("#searchField").val();
+var $updateButton = $("#updateValueButton");
+var $updateValue = $("#updateValue").val();
 
 //search Button event handler sends off a POST request
 $searchButton.on("click", function(event){
-	//captute the value of the search field when button is clicked
-	// Type in Lore Eye An Us- that's me and a valid Xbox Live Gamertag
-	var $search = $("#searchField").val();
+	
 	event.preventDefault();
 	
 	//jQuery POST request: url, data, dunno what the function is for
@@ -36,3 +37,7 @@ $searchButton.on("click", function(event){
 		$("#spartan").attr("src", data)
 	});
 });
+
+$updateButton.on("click", function(event) {
+	
+})
