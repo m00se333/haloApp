@@ -20,8 +20,7 @@ app.use(bodyParser.json());
 
 //express app serves static files located in the public directory
 app.use(express.static(__dirname + '/public'));
-app.set("view engine", "jade");
-app.set("views", __dirname + "/templates");
+
 
 //At the home route (localhost:1117/) send the static file index.html
 app.get("/", function(req, res){
@@ -49,8 +48,8 @@ app.post("/statSearch", function(req, res){
 				totalDeaths: body.Results[0].Result.WarzoneStat.TotalDeaths,
 				totalGames: body.Results[0].Result.WarzoneStat.TotalGamesCompleted
 		  };
-		res.send(playerData)
-	//console.log(playerData);
+		
+	console.log(body);
 	// creates a child named "user" in my database
 	// CREATE capability
 	var userRef = ref.child("user");
@@ -60,9 +59,30 @@ app.post("/statSearch", function(req, res){
 		});
 });
 
+//Update
+app.post("/update", function(req, res){
+	var update = req.body.update;
+	var updateStats = new Options("https://www.haloapi.com/stats/h5/servicerecords/warzone?players="+update);
+
+	request(updateStats, function(error, res, body) {
+		if (error) throw new Error(error);
+		var body = JSON.parse(res.body)
+
+		var updatePD = {
+				gamertag: body.Results[0].Id,
+				totalKills: body.Results[0].Result.WarzoneStat.TotalKills,
+				totalDeaths: body.Results[0].Result.WarzoneStat.TotalDeaths,
+				totalGames: body.Results[0].Result.WarzoneStat.TotalGamesCompleted
+		  };
+		res.send(updatePD)
+		var updatedPlayerRef = ref.child("savedUser");
+		updatedPlayerRef.set(updatePD);
+	})
+})
+/*
 //emblem
 app.post("/emblemSearch", function(req, res){
-var search = req.body.search
+var search = req.body.search;
 var imgOptions = new Options('https://www.haloapi.com/profile/h5/profiles/'+search+'/emblem', '512');
 
 		request(imgOptions, function (error, response, body) {
@@ -93,7 +113,7 @@ request(spartanOptions, function (error, response, body) {
 		  spartanImage.set({img:imgString});
 	});
 });
-
+*/
 
 app.listen(1117, function(){
 	console.log("Frontend server running on 1117.")

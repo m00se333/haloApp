@@ -41,11 +41,14 @@
     });
   });
   */
+// Reading from Database 
 $("#searchButton").on("click", function(){
 
-    firebase.database().ref().once("child_added", function(snapshot){
+    firebase.database().ref().once("child_changed", function(snapshot){
     // little lesson in closure
     // dry coding
+
+
     function ez(path){
       return snapshot.child(path).val();
     }
@@ -81,7 +84,7 @@ $("#searchButton").on("click", function(){
 });
 
 var $confirmButton = $("#confirmButton");
-
+// Writing to Database successfully.
 $(document).on("click", "#confirm", function(event){
   event.preventDefault()
   console.log("I clicked it");
