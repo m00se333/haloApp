@@ -1,7 +1,7 @@
 //define search button for later use
 var $searchButton = $("#searchButton");
 var $updateButton = $("#updateValueButton");
-var homeRoute = "http://localhost:1117/"
+var homeRoute = "https://warzonedata.herokuapp.com/"
 
 //search Button event handler sends off a POST request
 $searchButton.on("click", function(event){
