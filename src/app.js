@@ -74,7 +74,6 @@ app.post("/update", function(req, res){
 				totalDeaths: body.Results[0].Result.WarzoneStat.TotalDeaths,
 				totalGames: body.Results[0].Result.WarzoneStat.TotalGamesCompleted
 		  };
-		res.send(updatePD)
 		var updatedPlayerRef = ref.child("savedUser");
 		updatedPlayerRef.set(updatePD);
 	})

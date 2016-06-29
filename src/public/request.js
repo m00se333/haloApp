@@ -35,7 +35,7 @@ $searchButton.on("click", function(event){
 $updateButton.on("click", function(event) {
 	var $updateValue = $("#updateValue").val();
 	event.preventDefault();
-	$.post(homeRoute +"update", {update: $updateValue}, function(data){
+	$.post(homeRoute + "update", {update: $updateValue}, function(data){
 		console.log(data);
 	});
 });
