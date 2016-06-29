@@ -8,7 +8,7 @@ var Options = require("./router.js")
 var app = express();
 var bodyParser = require("body-parser");
 var Firebase = require("firebase");
-
+var port = process.env.PORT || 8080;
 // links to my firebase database
 var db = Firebase.database();
 //sets the reference to the root of the database, or the server I'm not quite sure.
@@ -115,8 +115,8 @@ request(spartanOptions, function (error, response, body) {
 });
 */
 
-app.listen(1117, function(){
-	console.log("Frontend server running on 1117.")
+app.listen(port, function(){
+	console.log("Frontend server running on " + port)
 });
 
 
