@@ -21,14 +21,14 @@ var homeRoute = "warzonedata.herokuapp.com";
 $searchButton.on("click", function(event){
 	event.preventDefault();
 	var $search = $("#searchField").val();
-	$.post(homeRoute + "statSearch", {search: $search}, function(data){
+	$.post("statSearch", {search: $search}, function(data){
 		
 	});
-	$.post(homeRoute + "emblemSearch", {search: $search}, function(data){
+	$.post("emblemSearch", {search: $search}, function(data){
 		//console.log(data);
 	});
 
-	$.post(homeRoute + "spartanSearch", {search: $search}, function(data){
+	$.post("spartanSearch", {search: $search}, function(data){
 		//console.log(data)
 	});
 
