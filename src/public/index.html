@@ -8,32 +8,57 @@
 <body>
 <div id="top">
 	<h1>Enter Your Gamertag to Retreive Your Halo Data</h1>
+	<!-- Target Element for #searchButton -->
+	<div id="preview">
+		
+	</div>
 	<form id="searchForm">
 		<input id="searchField" type="text" value=""></input>
 		<input id="searchButton" type="submit" value="search"></input>
+		<button id="saveProfile">save profile?</button>
 	</form>
 </div>
+
 <button id="deleteButton"></button>
-<button id="saveProfile">save profile?</button>
-	<script id="list-template" type="text/x-handlebars-template">
-    <h2>{{gamertag}}</h2>
-    <h3>{{spartanRank}}</h3>
-   
-  </script>
 
 <button id="retrieveSearch">Confirm</button>
-<div id="profileSearch">
+
 	
-</div>
-<form id="updateSaved">
-		<input id="updateValue" type="text" value="BajaTacos"></input>
-		<input id="updateValueButton" type="submit" value="Update"></input>
-</form>
-<a href="/compare">"click me"</a>
+<!-- Target Element for #saveProfile -->
+	<div id="profileSearch">
+		
+	</div>
 
 
 
+	
+	
+	
 
+
+	
+  
+<!-- Template hooked up to #searchButton -->
+	<script id="previewTemplate" type="text/x-handlebars-template">
+		<div id="previewStats">
+		<h2>Gamertag:  {{gamertag}}</h2>
+    <h3>Spartan Rank:  {{spartanRank}}</h3>
+    </div>
+    <img src={{spartan}}>
+	</script>
+<!--Templete hooked up to #retrieveSearch -->
+	<script id="savedUserTemplate" type="text/x-handlebars-template">
+		<div id="savedData">
+    <h2>Gamertag:  {{gamertag}}</h2>
+    <p>Spartan Rank:  {{spartanRank}}</p>
+    <p>Total Games Played: {{totalGames}}</p>
+    <p>Total Kills:  {{totalKills}}</p>
+    <p>Total Assists: {{totalAssists}}</p>
+    <p>Total Deaths: {{totalDeaths}}</p>
+    </div>
+    <img src={{spartan}}>
+  </script>
+<!-- Normal Script -->  
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>

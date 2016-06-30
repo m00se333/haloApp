@@ -24,39 +24,30 @@ body {
 h1 {
   text-align: center; }
 
+#preview {
+  margin: 0 auto;
+  height: 100%;
+  width: 50%;
+  border: 1px solid #999;
+  display: none; }
+
+h2 {
+  text-align: center; }
+
+h3 {
+  text-align: center;
+  margin: 0; }
+
+img {
+  padding-left: 10%; }
+
 #searchForm {
   margin: 0 auto;
   display: block;
   width: 30%;
   padding-left: 5%; }
 
-#imageContainer {
-  margin: 0 auto;
-  width: 40%;
-  border: 1px solid white;
-  background-repeat: no-repeat;
-  background-position: center;
+#saveProfile {
   display: none; }
-
-#spartan {
-  margin: 0 auto;
-  display: block;
-  position: relative;
-  padding: 12% 0 0 0; }
-
-#dataContainer {
-  margin: 3% auto;
-  display: block;
-  width: 40%; }
-
-h2, p {
-  margin: 0 auto;
-  display: block;
-  text-align: center; }
-
-#test, #test2, #test3 {
-  height: 100px;
-  width: 100px;
-  border: 1px solid black; }
 
 /*# sourceMappingURL=main.css.map */

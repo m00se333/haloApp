@@ -89,7 +89,7 @@ request(spartanOptions, function (error, response, body) {
 	});
 });
 /* Update Paths are being depcrecaited because the same result is being achieved
-	 with the event listener attached to 
+	 with the event listener attached to the search button
 //Update
 app.post("/update", function(req, res){
 	var update = req.body.update;
