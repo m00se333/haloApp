@@ -88,63 +88,7 @@ request(spartanOptions, function (error, response, body) {
 		  spartanImage.set(imgString);
 	});
 });
-/* Update Paths are being depcrecaited because the same result is being achieved
-	 with the event listener attached to the search button
-//Update
-app.post("/update", function(req, res){
-	var update = req.body.update;
-	var updateStats = new Options("https://www.haloapi.com/stats/h5/servicerecords/warzone?players="+update);
 
-	request(updateStats, function(error, res, body) {
-		if (error) throw new Error(error);
-		var body = JSON.parse(res.body)
-
-		var updatePD = {
-				gamertag: body.Results[0].Id,
-		  	spartanRank: body.Results[0].Result.SpartanRank,
-				totalKills: body.Results[0].Result.WarzoneStat.TotalKills,
-				totalAssists: body.Results[0].Result.WarzoneStat.TotalAssists,
-				totalDeaths: body.Results[0].Result.WarzoneStat.TotalDeaths,
-				totalGames: body.Results[0].Result.WarzoneStat.TotalGamesCompleted
-		  };
-		var updatedPlayerRef = ref.child("savedUser");
-		updatedPlayerRef.set(updatePD);
-	});
-});
-
-//emblem
-app.post("/emblemUpdate", function(req, res){
-var search = req.body.search;
-var imgOptions = new Options('https://www.haloapi.com/profile/h5/profiles/'+search+'/emblem', '512');
-
-		request(imgOptions, function (error, response, body) {
-		  if (error) throw new Error(error);
-		  var imgString = response.request.uri.href;
-		 
-		  res.send(imgString);
-		  
-		  var emblemRef = ref.child("savedUser/emblem");
-		  		emblemRef.set(imgString);
-		});
-});
-
-//spartan image 
-app.post("/spartanUpdate", function(req, res){
-var search = req.body.search
-var spartanOptions = new Options('https://www.haloapi.com/profile/h5/profiles/'+search+'/spartan', '256');
-
-request(spartanOptions, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  var imgString = response.request.uri.href;
-
-	res.send(imgString);
-
-	var spartanImage = ref.child("savedUser/spartanImage");
-		  spartanImage.set(imgString);
-	});
-});
-*/
 app.listen(port, function(){
 	console.log("Frontend server running on " + port)
 });

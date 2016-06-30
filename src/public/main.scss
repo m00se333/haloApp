@@ -33,7 +33,8 @@ body{
     border: 1px solid #999;
     display: none;
   } #previewStats{
-    
+      background: white;
+      color: black;
     } h2{
       text-align: center;
     } h3 {
@@ -50,6 +51,21 @@ body{
 	} #saveProfile {
     display: none;
   }
+#profileSearch{
+  width: 45%;
+  } .profileContainer{
+  width: 40vw;
+  margin: 0;
+  background-repeat: no-repeat;
+    } #savedData {
+      width: 80%;
+      margin: 0;
+      background: white;
+      opacity: 0.9;
+      } p {
+        opacity: 1;
+        padding-left: 5%;
+      }
 
 
 

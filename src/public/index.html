@@ -18,16 +18,16 @@
 		<button id="saveProfile">save profile?</button>
 	</form>
 </div>
-
+<!-- Target Element for #saveProfile -->
+	<div id="profileSearch">
+		
+	</div>
 <button id="deleteButton"></button>
 
 <button id="retrieveSearch">Confirm</button>
 
 	
-<!-- Target Element for #saveProfile -->
-	<div id="profileSearch">
-		
-	</div>
+
 
 
 
@@ -48,15 +48,17 @@
 	</script>
 <!--Templete hooked up to #retrieveSearch -->
 	<script id="savedUserTemplate" type="text/x-handlebars-template">
-		<div id="savedData">
-    <h2>Gamertag:  {{gamertag}}</h2>
-    <p>Spartan Rank:  {{spartanRank}}</p>
-    <p>Total Games Played: {{totalGames}}</p>
-    <p>Total Kills:  {{totalKills}}</p>
-    <p>Total Assists: {{totalAssists}}</p>
-    <p>Total Deaths: {{totalDeaths}}</p>
+		<div class="profileContainer" style="background-image: url({{emblem}});">
+			<div id="savedData">
+		    <h2>Gamertag:  {{gamertag}}</h2>
+		    <p>Spartan Rank:  {{spartanRank}}</p>
+		    <p>Total Games Played: {{totalGames}}</p>
+		    <p>Total Kills:  {{totalKills}}</p>
+		    <p>Total Assists: {{totalAssists}}</p>
+		    <p>Total Deaths: {{totalDeaths}}</p>
+	    </div>
+	    <img src={{spartan}}>
     </div>
-    <img src={{spartan}}>
   </script>
 <!-- Normal Script -->  
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>

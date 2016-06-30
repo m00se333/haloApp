@@ -20,8 +20,14 @@ var homeRoute = "http://warzonedata.herokuapp.com/";
 // app.js will call the Halo Waypoint API and update Firebase
 $searchButton.on("click", function(event){
 	event.preventDefault();
+	$("#preview").hide();
 	$("#preview").children().remove();
 	var $search = $("#searchField").val();
+
+	if ($search === "" || null ){
+		alert("type in an Xbox Live Gamertag")
+	} else {
+
 	$.post("statSearch", {search: $search}, function(data){
 		
 	});
@@ -59,30 +65,14 @@ $searchButton.on("click", function(event){
 					$("#saveProfile").css("display", "inline-block")
 			});
 		}, 4000);
+	}
 });
-/* Depreciated see the explanation in app.js line 91
-// update functionality
-$updateButton.on("click", function(event) {
-	var $updateValue = $("#updateValue").val();
-	event.preventDefault();
-	console.log("clicked Update")
-	$.post(homeRoute + "update", {update: $updateValue}, function(data){
-		
-	});
-	$.post(homeRoute + "emblemUpdate", {search: $updateValue}, function(data){
-		//console.log(data);
-	});
 
-	$.post(homeRoute + "spartanUpdate", {search: $updateValue}, function(data){
-		//console.log(data)
-	});
-});
-*/
 var $confirmButton = $("#confirmButton");
 // Writing to Database successfully.
 $(document).on("click", "#saveProfile", function(event){
   event.preventDefault()
-  console.log("I clicked it");
+  $("#profileSearch").children().remove();
   firebase.database().ref().once("value", function(snapshot){
     function ez(path){
       return snapshot.child(path).val();
@@ -128,7 +118,7 @@ $(document).on("click", "#saveProfile", function(event){
     var savedUserTemplateHTML = savedUserTemplate(savedUserRetrieveObject);
     var $savedUserTemplateHTML = $(savedUserTemplateHTML);
     $("#profileSearch").append($savedUserTemplateHTML);
-    console.log(savedUserRetrieveObject.spartan)
+    $("#profileSearch").css("backgroung-image", "url("+savedUserRetrieveObject.emblem+")");
   });
 	}, 4000);
  });
@@ -142,43 +132,6 @@ $("#deleteButton").on("click", function(event){
   }
   deleteSaved();  
 });
-
-/*
-// retrieve at "user" endpoint
-$("#retrieveSearch").on("click", function(event){
-	event.preventDefault();
-	$("#profileSearch").children().remove();
-	firebase.database().ref("user").once("value", function(snapshot){
-		function ez(path){
-      return snapshot.child(path).val();
-    }
-
-    var confirmObject = {
-      gamertag: ez("gamertag"),
-      spartanRank: ez("spartanRank"),
-      emblem: ez("emblem"),
-      spartan: ez("spartanImage"),
-      totalAssists: ez("totalAssists"),
-      totalKills: ez("totalKills"),
-      totalDeaths: ez("totalDeaths"),
-      totalGames: ez("totalGames")
-			}
-
-		var sourceTemplate = $("#list-template").html();
-
-    var template =  Handlebars.compile(sourceTemplate);
-
-    var templateHTML = template(confirmObject);
-
-    var $templateHTML = $(templateHTML);
-
-    $("#profileSearch").append($templateHTML);
-
-		console.log(confirmObject);
-	});
-});
-*/
-
 
 
 
