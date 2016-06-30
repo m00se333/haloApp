@@ -11,6 +11,8 @@
   "dependencies": {
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
-    "firebase": "^3.0.5"
+    "firebase": "^3.0.5",
+    "jade": "^1.11.0",
+    "nodemon": "^1.9.2"
   }
 }
