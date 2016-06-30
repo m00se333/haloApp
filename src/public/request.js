@@ -3,7 +3,10 @@ var $searchButton = $("#searchButton");
 var $updateButton = $("#updateValueButton");
 var homeRoute = "http://warzonedata.herokuapp.com/";
 
-
+function hideAndDeleteFBRef(object){
+	$(object).hide();
+	$(object).children().remove()
+}
 
 
 // config object with my credentials
@@ -20,8 +23,7 @@ var homeRoute = "http://warzonedata.herokuapp.com/";
 // app.js will call the Halo Waypoint API and update Firebase
 $searchButton.on("click", function(event){
 	event.preventDefault();
-	$("#preview").hide();
-	$("#preview").children().remove();
+	hideAndDeleteFBRef("#preview");
 	var $search = $("#searchField").val();
 
 	if ($search === "" || null ){
@@ -121,7 +123,18 @@ $(document).on("click", "#saveProfile", function(event){
     $("#profileSearch").css("backgroung-image", "url("+savedUserRetrieveObject.emblem+")");
   });
 	}, 4000);
+
+
  });
+
+
+
+
+
+
+
+
+
 
 // Deleting successfully
 $("#deleteButton").on("click", function(event){
@@ -130,7 +143,8 @@ $("#deleteButton").on("click", function(event){
   function deleteSaved(){
     firebase.database().ref("savedUser").remove();
   }
-  deleteSaved();  
+  deleteSaved();
+  hideAndDeleteFBRef("#profileSearch"); 
 });
 
 
