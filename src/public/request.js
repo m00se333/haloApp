@@ -30,15 +30,12 @@ $searchButton.on("click", function(event){
 		alert("type in an Xbox Live Gamertag")
 	} else {
 
-	$.post("statSearch", {search: $search}, function(data){
-		
+	$.post(homeRoute + "statSearch", {search: $search}, function(data){
 	});
-	$.post("emblemSearch", {search: $search}, function(data){
-		//console.log(data);
+	$.post(homeRoute + "emblemSearch", {search: $search}, function(data){
 	});
 
-	$.post("spartanSearch", {search: $search}, function(data){
-		//console.log(data)
+	$.post(homeRoute + "spartanSearch", {search: $search}, function(data){
 	});
 
 	// delay the reading of data so firebase has a chance to update based on the search.
@@ -126,14 +123,6 @@ $(document).on("click", "#saveProfile", function(event){
 
 
  });
-
-
-
-
-
-
-
-
 
 
 // Deleting successfully

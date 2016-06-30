@@ -16,7 +16,6 @@ var ref = db.ref("/");
 // I think this is necessary to parse the JSON data I'm recieving
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-//using Jade because I don't know how else to do this
 
 //express app serves static files located in the public directory
 app.use(express.static(__dirname + '/public'));
