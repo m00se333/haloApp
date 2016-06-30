@@ -1,7 +1,7 @@
 //define search button for later use
 var $searchButton = $("#searchButton");
 var $updateButton = $("#updateValueButton");
-var homeRoute = "http://localhost:8080/";
+var homeRoute = "warzonedata.herokuapp.com";
 
 
 
