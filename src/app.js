@@ -32,53 +32,30 @@ app.get("/compare", function(req, res){
 })
 //Event Listener when there is a POST request made from public/request.js
 app.post("/statSearch", function(req, res){
-	// In this case the req is the POST request and the request body is the data I sent along with it. Refer to request.js
 	var search = req.body.search;
 	
 	var statsOptions = new Options("https://www.haloapi.com/stats/h5/servicerecords/warzone?players="+search);
   		
 		request(statsOptions, function (error, response, body) {
 		  if (error) throw new Error(error);
-		  // This is necessary because the body is a string, and JSON.parse turns said string into an object
 		  var body = JSON.parse(response.body)
 
-		  var playerData = {
+		  var warzoneOverview = {
 		  	gamertag: body.Results[0].Id,
+		  	spartanRank: body.Results[0].Result.SpartanRank,
 				totalKills: body.Results[0].Result.WarzoneStat.TotalKills,
+				totalAssists: body.Results[0].Result.WarzoneStat.TotalAssists,
 				totalDeaths: body.Results[0].Result.WarzoneStat.TotalDeaths,
 				totalGames: body.Results[0].Result.WarzoneStat.TotalGamesCompleted
 		  };
-		
-	console.log(body);
-	// creates a child named "user" in my database
-	// CREATE capability
+
+	res.send(warzoneOverview);
 	var userRef = ref.child("user");
-	// populates the child with the playerData object successfully.
-	// Every time a new POST request is issued the user's data resets.
-	userRef.set(playerData);
+	
+	userRef.set(warzoneOverview);
 		});
 });
 
-//Update
-app.post("/update", function(req, res){
-	var update = req.body.update;
-	var updateStats = new Options("https://www.haloapi.com/stats/h5/servicerecords/warzone?players="+update);
-
-	request(updateStats, function(error, res, body) {
-		if (error) throw new Error(error);
-		var body = JSON.parse(res.body)
-
-		var updatePD = {
-				gamertag: body.Results[0].Id,
-				totalKills: body.Results[0].Result.WarzoneStat.TotalKills,
-				totalDeaths: body.Results[0].Result.WarzoneStat.TotalDeaths,
-				totalGames: body.Results[0].Result.WarzoneStat.TotalGamesCompleted
-		  };
-		var updatedPlayerRef = ref.child("savedUser");
-		updatedPlayerRef.set(updatePD);
-	})
-})
-/*
 //emblem
 app.post("/emblemSearch", function(req, res){
 var search = req.body.search;
@@ -87,13 +64,11 @@ var imgOptions = new Options('https://www.haloapi.com/profile/h5/profiles/'+sear
 		request(imgOptions, function (error, response, body) {
 		  if (error) throw new Error(error);
 		  var imgString = response.request.uri.href;
+		 
 		  res.send(imgString);
-		  //console.log(imgString);
-
-		  // create child of "/user"
+		  
 		  var emblemRef = ref.child("user/emblem");
-		  		// pass an object to that path in the database
-		  		emblemRef.set({img:imgString});
+		  		emblemRef.set(imgString);
 		});
 });
 
@@ -106,14 +81,70 @@ request(spartanOptions, function (error, response, body) {
   if (error) throw new Error(error);
 
   var imgString = response.request.uri.href;
+
 	res.send(imgString);
 
 	var spartanImage = ref.child("user/spartanImage");
-		  spartanImage.set({img:imgString});
+		  spartanImage.set(imgString);
+	});
+});
+/* Update Paths are being depcrecaited because the same result is being achieved
+	 with the event listener attached to 
+//Update
+app.post("/update", function(req, res){
+	var update = req.body.update;
+	var updateStats = new Options("https://www.haloapi.com/stats/h5/servicerecords/warzone?players="+update);
+
+	request(updateStats, function(error, res, body) {
+		if (error) throw new Error(error);
+		var body = JSON.parse(res.body)
+
+		var updatePD = {
+				gamertag: body.Results[0].Id,
+		  	spartanRank: body.Results[0].Result.SpartanRank,
+				totalKills: body.Results[0].Result.WarzoneStat.TotalKills,
+				totalAssists: body.Results[0].Result.WarzoneStat.TotalAssists,
+				totalDeaths: body.Results[0].Result.WarzoneStat.TotalDeaths,
+				totalGames: body.Results[0].Result.WarzoneStat.TotalGamesCompleted
+		  };
+		var updatedPlayerRef = ref.child("savedUser");
+		updatedPlayerRef.set(updatePD);
+	});
+});
+
+//emblem
+app.post("/emblemUpdate", function(req, res){
+var search = req.body.search;
+var imgOptions = new Options('https://www.haloapi.com/profile/h5/profiles/'+search+'/emblem', '512');
+
+		request(imgOptions, function (error, response, body) {
+		  if (error) throw new Error(error);
+		  var imgString = response.request.uri.href;
+		 
+		  res.send(imgString);
+		  
+		  var emblemRef = ref.child("savedUser/emblem");
+		  		emblemRef.set(imgString);
+		});
+});
+
+//spartan image 
+app.post("/spartanUpdate", function(req, res){
+var search = req.body.search
+var spartanOptions = new Options('https://www.haloapi.com/profile/h5/profiles/'+search+'/spartan', '256');
+
+request(spartanOptions, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  var imgString = response.request.uri.href;
+
+	res.send(imgString);
+
+	var spartanImage = ref.child("savedUser/spartanImage");
+		  spartanImage.set(imgString);
 	});
 });
 */
-
 app.listen(port, function(){
 	console.log("Frontend server running on " + port)
 });
